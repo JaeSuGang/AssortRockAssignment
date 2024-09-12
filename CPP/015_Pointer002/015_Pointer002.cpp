@@ -3,14 +3,64 @@
 
 #include <iostream>
 
-void Test(int Value0, int Value1, int Value2, int Value3)
-{
-    int* Ptr = &Value0;
-    int TestValue0 = *Ptr;
+// 함수의 인자는 무조건
+// 무조건 8바이트 간격으로 떨어져있다.
 
-    int TestValue1 = Value1;
-    int TestValue2 = Value2;
-    int TestValue3 = Value3;
+//        100         108         116         124
+void Test(int Value0, ...)
+{
+    // 100번지이면
+    // 100
+    {
+        int* Ptr = &Value0;
+        int TestValue0 = *Ptr;
+
+        // Ptr = Ptr + 1;
+        // Ptr = 100 + sizeof(int) * 1;
+
+        // 108
+        Ptr = Ptr + 2;
+        // Ptr = 100 + sizeof(int) * 2;
+        int TestValue1 = *Ptr;
+        //// 116
+        Ptr = Ptr + 2;
+        int TestValue2 = *Ptr;
+        //// 124
+        Ptr = Ptr + 2;
+        int TestValue3 = *Ptr;
+        int a = 0;
+    }
+
+
+    {
+        // 계속 100번지 유지중
+        int* Ptr = &Value0;
+        int TestValue0 = *Ptr;
+
+        // 계속 100번지 유지중
+        int* Ptr0 = Ptr + 2;
+        int TestValue1 = *Ptr0;
+
+        int* Ptr1 = Ptr + 4;
+        int TestValue2 = *Ptr1;
+
+        int* Ptr2 = Ptr + 6;
+        int TestValue3 = *Ptr2;
+        int a = 0;
+    }
+
+    {
+        // 계속 100번지 유지중
+        int* Ptr = &Value0;
+        int TestValue0 = *(Ptr + 0);
+        int TestValue1 = *(Ptr + 2);
+        int TestValue2 = *(Ptr + 4);
+        int TestValue3 = *(Ptr + 6);
+        int a = 0;
+    }
+
+     1 + 0;
+    
 
     int a = 0;
 }
@@ -56,9 +106,9 @@ int main()
     }
 
     {
-        APtr = APtr + 2;
+        APtr = APtr + 3;
         // APtr이 100번지라고 한다면
-        // APtr = 100 + sizeof(int) * 2;
+        // APtr = 100 + sizeof(int) * 3;
         // ::main::AddRess
         __int64 AddRess = reinterpret_cast<__int64>(APtr);
         // 결과는 108번지가 나와야 합니다.
