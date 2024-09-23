@@ -23,6 +23,7 @@ int main()
     // [B][B][B][B][0]
 
     int Count = strlen("BBBB");
+    int MyCount = StringCount("BBBB");
 
     int a = 0;
 }
