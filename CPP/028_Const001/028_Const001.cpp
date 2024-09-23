@@ -86,7 +86,16 @@ int main()
     //ValuePtr = nullptr;
 
     const int * const  ValuePtr = &Value;
-    // ValuePtr = nullptr;
+
+    //const int* const * const * const * const * const ValuePtr = nullptr;
+    
+    // const int*;
+    // const int* const * const;
+    // const int* const * const * const;
+
+    // 함수를 읽음에 있어서 굉장히 const가 
+    // 함수의 대략적인 내용을 보고 알수가 있야 한다.
+
 
 }
 
