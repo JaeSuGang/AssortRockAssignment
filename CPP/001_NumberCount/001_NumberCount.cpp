@@ -7,14 +7,16 @@
 // 0 이외의 양수의 자릿수를 세자.
 int NumberCount(int _Value)
 {
-    // /(나누기를 최대한) 연산을 사용하세요.
+    // 값
+    // /(나누기) 연산을 사용하세요.
     int Result = 0;
-    while (true)
+    while (_Value)
     {
-
+        _Value /= 10;
+        Result += 1;
     }
 
-    return 0;
+    return Result;
 }
 
 // 해도 되고 안해도 됩니다.
@@ -23,6 +25,9 @@ int NumberCount(int _Value)
 // 숫자를 문자열로 만드는 함수.
 void NumberToString(char* Buffer, int BufferSize, int _Value)
 {
+    // 글자도 숫자죠?
+    '0';
+
     return;
 }
 
@@ -30,13 +35,8 @@ int main()
 {
     // 5
     int Result0 = NumberCount(12358);
-    // 4
     int Result1 = NumberCount(5258);
-    // 7
-    int Result1 = NumberCount(5258111);
-
-    // 0은 영
-
+    int Result2 = NumberCount(5258111);
     char Buffer[100] = {0};
 
     NumberToString(Buffer, 100, 3712);
