@@ -4,13 +4,8 @@ int StringCount(const char* const lpszData)
 {
 	int nCharCount = 0;
 
-	while (lpszData)
+	while (lpszData[nCharCount])
 	{
-		if (lpszData[nCharCount] == '\0')
-		{
-			break;
-		}
-
 		nCharCount++;
 	}
 
