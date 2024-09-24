@@ -60,7 +60,9 @@ int main()
 
     char Buffer[100] = { 0 };
 
-    NumberToString(Buffer, 100, 3712);
+    NumberToString(Buffer, 100, 371222);
     // Buffer == "3712"
+
+    std::cout << Buffer;
 }
 
