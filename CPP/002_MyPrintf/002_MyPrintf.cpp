@@ -18,11 +18,20 @@ void NumberToString(char* Buffer, int BufferSize, int _Value)
 {
  	int Count = NumberCount(_Value);
 
-	int Value = 3;
-	char Ch = Value + '0';
+	int MulValue = 1;
+	for (int i = 0; i < Count - 1; i += 1)
+	{
+		MulValue *= 10;
+	}
 
-	int CurValue = _Value / 10;
-
+	for (int i = 0; i < Count; i += 1)
+	{
+		// 12321
+		int CurValue = _Value / MulValue;
+		Buffer[i] = CurValue;
+		_Value -= CurValue * MulValue;
+		MulValue /= 10;
+	}
 
 	return;
 }
@@ -85,44 +94,9 @@ void ReFunction()
 
 int main()
 {
-	// int Value = '1';
-
-	// ReFunction();
-
-	// 숫자를 출력하는 기능을 포맷팅이라는 것으로 만들어 놨습니다.
-
-	// %d는 정수 출력할께요
-	// printf_s("%d, %d", nullptr);
-	// printf_s("Number : %d\n", 12321);
-
-	// \n 엔터 줄바꿈 처리를 해라.
 	MyPrintf("Number : %d\n", 12321);
-	// MyPrintf("Number : %d\n", 333);
-	// "Number : 100\n"
 
-	// '\n';
 
-	int Value = 123;
-
-	char Arr[IntMaxCount] = {};
-	// 100이라는 숫자부터 시작해야한다는것은 어떻게 알수 있을까?
-	int NumberCountValue = NumberCount(Value);
-
-	int MulValue = 1;
-
-	for (int i = 0; i < NumberCountValue - 1; i++)
-	{
-		MulValue *= 10;
-	}
-
-	Arr[0] = Value / MulValue;
-	// MulValue -= 1000;
-
-	Arr[1] = Value / MulValue;
-	// MulValue -= 100;
-
-	Arr[2] = Value / MulValue;
-	// MulValue -= 10;
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴

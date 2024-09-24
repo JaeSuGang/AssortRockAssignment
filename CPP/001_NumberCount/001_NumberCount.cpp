@@ -37,8 +37,8 @@ int main()
     int Result0 = NumberCount(12358);
     int Result1 = NumberCount(5258);
     int Result2 = NumberCount(5258111);
-    char Buffer[100] = {0};
 
+    char Buffer[100] = {0};
     NumberToString(Buffer, 100, 3712);
     // Buffer == "3712"
 }
