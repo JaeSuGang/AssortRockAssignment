@@ -96,15 +96,15 @@ void MonsterStatusRender()
 // 로직과 랜더를 분리해야 한다.
 void Damage(const char* const _AttName, const char* const _DefName, int& _DefHp, int _Att)
 {
+
     // 게임 로직
     _DefHp -= _Att;
+}
 
+void DamageLogRender(const char* const _AttName, const char* const _DefName, int& _DefHp, int _Att)
+{
     // 랜더링
-	system("cls");
-    PlayerStatusRender();
-    MonsterStatusRender();
     printf_s("%s 가 %s를 공격해서 %d의 데미지를 입혔습니다.\n", _AttName, _DefName, _Att);
-
 }
 
 int main()
@@ -120,18 +120,27 @@ int main()
     {
         // 화면 전체를 지워라.
         // 콘솔창에 다른 프로그램를 실행해주는 프로그램
-        system("cls");
 
         char Input = ' ';
-
+        system("cls");
         PlayerStatusRender();
         MonsterStatusRender();
         Input = _getch();
 
+        system("cls");
         Damage(PlayerName, MonsterName, MonsterHp, PlayerAtt);
+        PlayerStatusRender();
+        MonsterStatusRender();
+        DamageLogRender(PlayerName, MonsterName, MonsterHp, PlayerAtt);
         Input = _getch();
 
+        system("cls");
         Damage(MonsterName, PlayerName, PlayerHp, MonsterAtt);
+        PlayerStatusRender();
+        MonsterStatusRender();
+        DamageLogRender(PlayerName, MonsterName, MonsterHp, PlayerAtt);
+        DamageLogRender(MonsterName, PlayerName, PlayerHp, MonsterAtt);
+
         Input = _getch();
     }
 
