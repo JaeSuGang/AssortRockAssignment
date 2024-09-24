@@ -128,7 +128,7 @@ int main()
     Test1 = Test0*/;
 
     // 선공과 후공을 만드세요.
-    CreatePlayer("1", 10, 100, 20);
+    CreatePlayer("1", 10, 100, 5);
     CreateMonster("Orc", 10, 100, 10);
 
     // 플레이어는 0~19
@@ -161,27 +161,54 @@ int main()
         // 플레이어가 먼저 데미지를 준다.
         if (CurPlayerSpeed > CurMonsterSpeed)
         {
-
+            DamageLogic(MonsterHp, PlayerAtt);
         }
-        else {
-
+        else 
+        {
+            DamageLogic(PlayerHp, MonsterAtt);
         }
-        DamageLogic(MonsterHp, PlayerAtt);
         // 다시 다 출력
         PlayerStatusRender();
         MonsterStatusRender();
-        SpeedCheckRender(PlayerName);
-        DamageRender(PlayerName, MonsterName, PlayerAtt);
+        if (CurPlayerSpeed > CurMonsterSpeed)
+        {
+            SpeedCheckRender(PlayerName);
+            DamageRender(PlayerName, MonsterName, PlayerAtt);
+        }
+        else
+        {
+            SpeedCheckRender(MonsterName);
+            DamageRender(MonsterName, PlayerName, MonsterAtt);
+        }
         Input = _getch();
 
         system("cls");
-        DamageLogic(PlayerHp, MonsterAtt);
+        if (CurPlayerSpeed > CurMonsterSpeed)
+        {
+            DamageLogic(PlayerHp, MonsterHp);
+        }
+        else
+        {
+            DamageLogic(MonsterHp, PlayerAtt);
+        }
+
         // 다시 다 출력
         PlayerStatusRender();
         MonsterStatusRender();
-        SpeedCheckRender(PlayerName);
-        DamageRender(PlayerName, MonsterName, PlayerAtt);
-        DamageRender(MonsterName, PlayerName, MonsterAtt);
+
+        if (CurPlayerSpeed > CurMonsterSpeed)
+        {
+            SpeedCheckRender(PlayerName);
+            DamageRender(PlayerName, MonsterName, PlayerAtt);
+            DamageRender(MonsterName, PlayerName, MonsterAtt);
+        }
+        else
+        {
+            SpeedCheckRender(MonsterName);
+            DamageRender(MonsterName, PlayerName, MonsterAtt);
+            DamageRender(PlayerName, MonsterName, PlayerAtt);
+        }
+
 
         Input = _getch();
     }
