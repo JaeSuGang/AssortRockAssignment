@@ -14,6 +14,7 @@ void MySrand(int _Value)
 // 그 시드값을 통해서 난수를 만들어내는 함수
 int MyRand()
 {
+	// 뭔가 공식이 존재한다.
 	Seed += 1;
 	return Seed;
 }
@@ -28,12 +29,15 @@ int main()
 	// 1976년 4바이트 정했습니다.
 	// 그런느낌으로 정수가 나온다.
 	__int64 Value = time(nullptr);
-	srand(100);
+	MySrand(200);
+
+	// 200 + 1 = 208;
+	// srand(100);
 
 	for (int i = 0; i < 10; i++)
 	{
-		// 
-		std::cout << rand() << std::endl;
+		std::cout << MyRand() << std::endl;
+		// std::cout << rand() << std::endl;
 	}
 }
 

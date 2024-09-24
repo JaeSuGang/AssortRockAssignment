@@ -125,7 +125,7 @@ int main()
 {
     // char Test0[100] = "Player";
     /*char Test1[50] = Test0;
-    Test1 = Test0*/;
+    Test1 = Test0*/
 
     // 선공과 후공을 만드세요.
     CreatePlayer("1", 10, 100, 5);
