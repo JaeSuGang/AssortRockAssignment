@@ -100,14 +100,29 @@ int main()
 	// MyPrintf("Number : %d\n", 333);
 	// "Number : 100\n"
 
+	// '\n';
+
 	int Value = 123;
 
 	char Arr[IntMaxCount] = {};
 	// 100이라는 숫자부터 시작해야한다는것은 어떻게 알수 있을까?
-	// 3 = NumberCount(Value);
-	Arr[0] = Value / 100;
-	Arr[1] = Value / 10;
-	Arr[2] = Value / 1;
+	int NumberCountValue = NumberCount(Value);
+
+	int MulValue = 1;
+
+	for (int i = 0; i < NumberCountValue - 1; i++)
+	{
+		MulValue *= 10;
+	}
+
+	Arr[0] = Value / MulValue;
+	// MulValue -= 1000;
+
+	Arr[1] = Value / MulValue;
+	// MulValue -= 100;
+
+	Arr[2] = Value / MulValue;
+	// MulValue -= 10;
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
