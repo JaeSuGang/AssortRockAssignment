@@ -32,8 +32,6 @@ void StrCopy(char* _Arr, int _BufferSize, const char* const _Name)
 
     // C스타일 글자 개수 세어주는 함수
     int Size = strlen(_Name);
-    _Arr[0] = _Name[0];
-    // strcpy_s()
     for (int i = 0; i < Size; i++)
     {
         _Arr[i] = _Name[i];
@@ -123,6 +121,9 @@ int CalSpeed(int _Speed)
 
 int main()
 {
+    int Arr0[5] = {1, 2, 3, 4, 5};
+    int Arr1[5] = {};
+
     // char Test0[100] = "Player";
     /*char Test1[50] = Test0;
     Test1 = Test0*/

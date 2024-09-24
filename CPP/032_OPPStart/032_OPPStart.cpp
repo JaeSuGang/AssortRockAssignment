@@ -54,7 +54,10 @@ class Orc
 // 제네릭
 // 위에 네가지가 종합되어 있는 언어.
 
+void Test()
+{
 
+}
 
 
 class Game
