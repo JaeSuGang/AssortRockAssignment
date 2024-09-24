@@ -24,11 +24,25 @@ void NumberToString(char* Buffer, int BufferSize, int _Value)
 		MulValue *= 10;
 	}
 
+	// 자료형은 의미가 없다는 소리를 선생님이 단다.
+	// 해석의 차이 입니다.
+	// 8421
+	// 0110
+	// 위와 같은 2진수를 명시적으로 '문자'로 쓰겠다고 선언하는게
+	// char Test;
+	// bool* Test0 = reinterprint_cast<bool*>(&Test);
+	
+	// int Test;
+	// char* Ptr = reinterprint_cast<char*>(&Test);
+
+	// 정수 => 6
+	// 문자 => 6
+	// 아스키 => 7bit 
+
 	for (int i = 0; i < Count; i += 1)
 	{
-		// 12321
 		int CurValue = _Value / MulValue;
-		Buffer[i] = CurValue;
+		Buffer[i] = CurValue + '0';
 		_Value -= CurValue * MulValue;
 		MulValue /= 10;
 	}
@@ -63,7 +77,7 @@ int MyPrintf(const char* const _Ptr, ...)
 				char Arr[IntMaxCount] = {};
 				NumberToString(Arr, IntMaxCount, ConvertValue);
 
-				MyPrintf("100");
+				MyPrintf(Arr);
 				ChCount += 2;
 				break;
 			}
@@ -94,7 +108,9 @@ void ReFunction()
 
 int main()
 {
-	MyPrintf("Number : %d\n", 12321);
+	// 321, 312
+
+	MyPrintf("Number : %d %d\n", 3213, 4322);
 
 
 }
