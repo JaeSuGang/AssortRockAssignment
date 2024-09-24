@@ -115,6 +115,11 @@ void SpeedCheckRender(const char* const _Name)
     printf_s("%s 의 선공입니다\n", _Name);
 }
 
+int CalSpeed(int _Speed)
+{
+    return rand() % _Speed;
+}
+
 
 int main()
 {
@@ -132,6 +137,8 @@ int main()
     // 시작하기 전에 몬스터와 플레이어는 서로 현재 속력을 뽑아낸다.
     // 더 높은 쪽이 먼저 공격한다.
 
+    srand(time(0));
+
     while (true)
     {
         // 화면 전체를 지워라.
@@ -140,6 +147,9 @@ int main()
 
         char Input = ' ';
 
+        int CurPlayerSpeed = CalSpeed(PlayerSpeed);
+        int CurMonsterSpeed = CalSpeed(MonsterSpeed);
+
 
         PlayerStatusRender();
         MonsterStatusRender();
@@ -147,6 +157,15 @@ int main()
 
         system("cls");
         // 데미지 주고
+        // 플레이어가 몬스터보다 빠르다면
+        // 플레이어가 먼저 데미지를 준다.
+        if (CurPlayerSpeed > CurMonsterSpeed)
+        {
+
+        }
+        else {
+
+        }
         DamageLogic(MonsterHp, PlayerAtt);
         // 다시 다 출력
         PlayerStatusRender();
