@@ -3,47 +3,80 @@
 
 #include <iostream>
 
-class StatusUnit
-{
+//class PlayerSaveData
+//{
+//public:
+//    int Hp;
+//    int Att;
+//};
 
-};
+const int NAMELEN = 10;
 
-// 싸울수 있다.
-class FightUnit : public StatusUnit
-{
-
-};
-
-// 이녀석들은 보통 자식클래스가 됩니다.
-// 구체적이고 명확한 개념일수록 말단 클래스에 위치하게 된다.
-// 굉장히 구체적인 개념이고 실체가 명확하다.
-class Player
-{
-};
-
-class GameMap
+class FightUnit
 {
 public:
-    void In(Player* _Player)
+    // void DamageLogic(int _Att)
+    // class DamageData;
+
+    // AttackLogic이라고 짓고
+
+    //void AttackLogic(FightUnit& _DefUnit)
+    //{
+    //    _DefUnit.Hp -= MinAtt;
+    //}
+
+    void DamageLogic(const FightUnit& _AttUnit)
     {
-
+        Hp -= _AttUnit.MinAtt;
     }
+
+    void DamageRender(const char* const _AttName, int _Att)
+    {
+        printf_s("%s 가 %s를 공격해서 %d의 데미지를 입혔습니다.\n", _AttName, Name, _Att);
+    }
+
+    const char* GetName() const
+    {
+        return Name;
+    }
+
+protected:
+
+
+private:
+    char Name[NAMELEN] = "NONE";
+	int Hp = 100;
+	int MinAtt = 10;
+    int MaxAtt = 20;
+    int Speed = 10;
 };
 
-
-// 길가의 돌맹이
-class Stone : public FightUnit
+class Player : public FightUnit
 {
 
 };
 
-class Orc
+class Monster : public FightUnit
 {
+
 };
+
+
+// 게임을 만들다보면
+// 일반적인 로직클래스 Player
+// 리소스 클래스 <= 
+// 데이터 전담클래스가 <= 내부에 변수밖에 없다. 
+// 맴버변수도 public을 사용합니다.
 
 int main()
 {
     
+    Player NewPlayer;
+    Monster NewMonster;
+
+    NewMonster.DamageLogic(NewPlayer);
+
+    // NewPlayer.
 }
 
 // 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
