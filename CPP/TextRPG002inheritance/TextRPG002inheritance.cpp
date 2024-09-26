@@ -139,6 +139,42 @@ class Monster : public FightUnit
 // 데이터 전담클래스가 <= 내부에 변수밖에 없다. 
 // 맴버변수도 public을 사용합니다.
 
+// 클래스는 말그대로 나의 생각정리도 포함되는 겁니다.
+class FightZone
+{
+    // 맴버변수 아니에요
+    // 맴버함수 필수 아니에요.
+public:
+    void Fight(FightUnit& _Left, FightUnit& _Right)
+    {
+        system("cls");
+        _Left.StatusRender();
+        _Right.StatusRender();
+        _getch();
+
+        system("cls");
+        int PlayerDamage = _Left.GetDamage();
+        _Right.DamageLogic(PlayerDamage);
+        _Left.StatusRender();
+        _Right.StatusRender();
+        _Right.DamageRender(_Left, PlayerDamage);
+
+
+        _getch();
+
+        system("cls");
+        int MonsterDamage = _Right.GetDamage();
+        _Left.DamageLogic(MonsterDamage);
+
+        _Left.StatusRender();
+        _Right.StatusRender();
+        _Right.DamageRender(_Left, PlayerDamage);
+        _Left.DamageRender(_Right, MonsterDamage);
+        _getch();
+    }
+};
+
+
 int main()
 {
     
@@ -150,36 +186,11 @@ int main()
     NewPlayer.SetName("Player");
     NewMonster.SetName("Monster");
 
+    FightZone FZone;
 
     while (true)
     {
-        system("cls");
-        NewPlayer.StatusRender();
-        NewMonster.StatusRender();
-        _getch();
-
-        system("cls");
-        int PlayerDamage = NewPlayer.GetDamage();
-        NewMonster.DamageLogic(PlayerDamage);
-        NewPlayer.StatusRender();
-        NewMonster.StatusRender();
-        NewMonster.DamageRender(NewPlayer, PlayerDamage);
-
-
-        _getch();
-
-        system("cls");
-        int MonsterDamage = NewMonster.GetDamage();
-        NewPlayer.DamageLogic(MonsterDamage);
-
-        NewPlayer.StatusRender();
-        NewMonster.StatusRender();
-        NewMonster.DamageRender(NewPlayer, PlayerDamage);
-        NewPlayer.DamageRender(NewMonster, MonsterDamage);
-
-
-        _getch();
-
+        FZone.Fight(NewPlayer, NewMonster);
     }
 
     // NewPlayer.
