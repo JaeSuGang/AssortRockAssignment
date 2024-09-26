@@ -1,18 +1,16 @@
 ﻿// TextRPG002inheritance.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
 //
 
+
 #include <iostream>
 #include <conio.h>
+#include <Windows.h>
+#include <assert.h>
 
-//class PlayerSaveData
-//{
-//public:
-//    int Hp;
-//    int Att;
-//};
+
+#define MSGASSERT(VALUE) MessageBoxA(nullptr, VALUE, "치명적 에러", MB_OK); assert(false);
 
 const int LINECOUNT = 50;
-
 const int NAMELEN = 20;
 
 // 다중상속을 부정적으로 생각하는 사람이 많아요.
@@ -53,6 +51,16 @@ public:
     {
         if (NAMELEN <= strlen(_Name))
         {
+            MSGASSERT("이름이 너무 깁니다");
+
+            //// 아주 사소한 경고나 에러라도 무조건 없애고 갈겁니다.
+            //MessageBoxA(nullptr
+            //    , "이름이 너무 깁니다" // 메세지 박스에 뜨는 내용
+            //    , "치명적 에러" // 메세지 박스에 뜨는 제목
+            //    , MB_OK // ok만 존재하는 메세지 박스로 만들어라
+            //);
+            //assert(false);
+
             // 이 사태가 벌어졌다는것을 어떻게 인지할건가요?
             return;
         }
@@ -140,7 +148,7 @@ int main()
     Monster NewMonster;
 
     NewPlayer.SetName("Player");
-    NewMonster.SetName("fadshjklfasdhjklfasdhjk");
+    NewMonster.SetName("Monster");
 
 
     while (true)
