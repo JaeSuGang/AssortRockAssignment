@@ -165,7 +165,7 @@ int main()
 		bool bIsPlayerFirst = SpeedCompareLogic(PlayerSpeed, MonsterSpeed);
 
 		if (bIsPlayerFirst)
-		{-
+		{
 			system("cls");
 			PlayerStatusRender();
 			MonsterStatusRender();
