@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <conio.h>
 
 //class PlayerSaveData
 //{
@@ -10,7 +11,9 @@
 //    int Att;
 //};
 
-const int NAMELEN = 10;
+const int LINECOUNT = 50;
+
+const int NAMELEN = 20;
 
 // 다중상속을 부정적으로 생각하는 사람이 많아요.
 // 1. 다중상속을 제대로 못쓰니까.
@@ -21,60 +24,80 @@ const int NAMELEN = 10;
 
 class StatusUnit
 {
+public:
+    void StatusRender()
+    {
+        printf_s("%s Status", Name);
+        int NameLan = static_cast<int>(strlen(Name));
+        int StatusRand = static_cast<int>(strlen(" Status"));
+        int nameLineCount = LINECOUNT - NameLan - StatusRand;
+        for (int i = 0; i < nameLineCount; i += 1)
+        {
+            printf_s("-");
+        }
+        printf_s("\n");
+        printf_s("공격력 : %d ~ %d\n", MinAtt, MaxAtt);
+        printf_s("체력 : %d\n", Hp);
+
+        for (int i = 0; i < LINECOUNT; i += 1)
+        {
+            printf_s("-");
+        }
+        printf_s("\n");
+    }
+
+    // Set을 체크하는것을 좋아해서
+    // private:
+
+    void SetName(const char* const _Name)
+    {
+        if (NAMELEN <= strlen(_Name))
+        {
+            // 이 사태가 벌어졌다는것을 어떻게 인지할건가요?
+            return;
+        }
+
+        strcpy_s(Name, _Name);
+    }
+
 protected:
     char Name[NAMELEN] = "NONE";
     int Hp = 100;
     int MinAtt = 10;
     int MaxAtt = 20;
     int Speed = 10;
-    int Charm = 0;
 
-    // 부모는 자식클래스가 뭔지 절대로 알아서는 안된다.
-    //void Test(FightUnit& _Test)
-    //{
-    //}
-};
-
-class Item
-{
-
-};
-
-class Inventory
-{
-    Item Arr[100];
+private:
 };
 
 class FightUnit : public StatusUnit
 {
 public:
-    // void DamageLogic(int _Att)
-    // class DamageData;
-
-    // AttackLogic이라고 짓고
-
-    //void AttackLogic(FightUnit& _DefUnit)
-    //{
-    //    _DefUnit.Hp -= MinAtt;
-    //}
-
     // MinMax
     int GetDamage() const
     {
         // minAtt ~ MaxAtt 사이의 숫자가 리턴되는 함수를 만드세요.
-        // return MinAtt + rand
+        return MinAtt + (rand() % (MaxAtt - MinAtt + 1));
+    }
+
+    void Damage(const FightUnit& _AttUnit)
+    {
+        int Damage = _AttUnit.GetDamage();
+        DamageLogic(Damage);
+        DamageRender(_AttUnit, Damage);
     }
 
     // 클래스의 레퍼런스를 넣어주는것이 많은게 간단해 집니다.
-    void DamageLogic(const FightUnit& _AttUnit)
+    void DamageLogic(const int _Damage)
     {
         // _AttUnit => 나를 공격하려는 상대
-        Hp -= _AttUnit.GetDamage();
+        Hp -= _Damage;
     }
 
-    void DamageRender(const char* const _AttName, int _Att)
+    // 잘못된 코딩이다.
+    void DamageRender(const FightUnit& _AttUnit, int _Damage)
     {
-        printf_s("%s 가 %s를 공격해서 %d의 데미지를 입혔습니다.\n", _AttName, Name, _Att);
+        printf_s("%s 가 %s를 공격해서 %d의 데미지를 입혔습니다.\n", _AttUnit.Name, Name, _Damage);
     }
 
     const char* GetName() const
@@ -111,20 +134,45 @@ class Monster : public FightUnit
 int main()
 {
     
+    srand(static_cast<unsigned int>(time(0)));
+
     Player NewPlayer;
     Monster NewMonster;
-    NewMonster.DamageLogic(NewPlayer);
+
+    NewPlayer.SetName("Player");
+    NewMonster.SetName("fadshjklfasdhjklfasdhjk");
+
+
+    while (true)
+    {
+        system("cls");
+        NewPlayer.StatusRender();
+        NewMonster.StatusRender();
+        _getch();
+
+        system("cls");
+        int PlayerDamage = NewPlayer.GetDamage();
+        NewMonster.DamageLogic(PlayerDamage);
+        NewPlayer.StatusRender();
+        NewMonster.StatusRender();
+        NewMonster.DamageRender(NewPlayer, PlayerDamage);
+
+
+        _getch();
+
+        system("cls");
+        int MonsterDamage = NewMonster.GetDamage();
+        NewPlayer.DamageLogic(MonsterDamage);
+
+        NewPlayer.StatusRender();
+        NewMonster.StatusRender();
+        NewMonster.DamageRender(NewPlayer, PlayerDamage);
+        NewPlayer.DamageRender(NewMonster, MonsterDamage);
+
+
+        _getch();
+
+    }
 
     // NewPlayer.
 }
-
-// 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
-// 프로그램 디버그: <F5> 키 또는 [디버그] > [디버깅 시작] 메뉴
-
-// 시작을 위한 팁: 
-//   1. [솔루션 탐색기] 창을 사용하여 파일을 추가/관리합니다.
-//   2. [팀 탐색기] 창을 사용하여 소스 제어에 연결합니다.
-//   3. [출력] 창을 사용하여 빌드 출력 및 기타 메시지를 확인합니다.
-//   4. [오류 목록] 창을 사용하여 오류를 봅니다.
-//   5. [프로젝트] > [새 항목 추가]로 이동하여 새 코드 파일을 만들거나, [프로젝트] > [기존 항목 추가]로 이동하여 기존 코드 파일을 프로젝트에 추가합니다.
-//   6. 나중에 이 프로젝트를 다시 열려면 [파일] > [열기] > [프로젝트]로 이동하고 .sln 파일을 선택합니다.

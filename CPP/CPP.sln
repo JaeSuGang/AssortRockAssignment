@@ -118,6 +118,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "042_inheritance", "042_inhe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "043_HasAIsA", "043_HasAIsA\043_HasAIsA.vcxproj", "{CF638453-09CE-4652-B523-65D4A81E9BEB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "044_Assert", "044_Assert\044_Assert.vcxproj", "{20C20A5F-711A-4E52-9673-6058D5306302}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -542,6 +544,14 @@ Global
 		{CF638453-09CE-4652-B523-65D4A81E9BEB}.Release|x64.Build.0 = Release|x64
 		{CF638453-09CE-4652-B523-65D4A81E9BEB}.Release|x86.ActiveCfg = Release|Win32
 		{CF638453-09CE-4652-B523-65D4A81E9BEB}.Release|x86.Build.0 = Release|Win32
+		{20C20A5F-711A-4E52-9673-6058D5306302}.Debug|x64.ActiveCfg = Debug|x64
+		{20C20A5F-711A-4E52-9673-6058D5306302}.Debug|x64.Build.0 = Debug|x64
+		{20C20A5F-711A-4E52-9673-6058D5306302}.Debug|x86.ActiveCfg = Debug|Win32
+		{20C20A5F-711A-4E52-9673-6058D5306302}.Debug|x86.Build.0 = Debug|Win32
+		{20C20A5F-711A-4E52-9673-6058D5306302}.Release|x64.ActiveCfg = Release|x64
+		{20C20A5F-711A-4E52-9673-6058D5306302}.Release|x64.Build.0 = Release|x64
+		{20C20A5F-711A-4E52-9673-6058D5306302}.Release|x86.ActiveCfg = Release|Win32
+		{20C20A5F-711A-4E52-9673-6058D5306302}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
