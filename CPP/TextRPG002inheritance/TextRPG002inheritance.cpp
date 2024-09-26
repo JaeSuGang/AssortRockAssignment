@@ -35,6 +35,15 @@ protected:
     //}
 };
 
+class Item
+{
+
+};
+
+class Inventory
+{
+    Item Arr[100];
+};
 
 class FightUnit : public StatusUnit
 {
