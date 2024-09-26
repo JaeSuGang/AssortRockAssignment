@@ -12,7 +12,31 @@
 
 const int NAMELEN = 10;
 
-class FightUnit
+// 다중상속을 부정적으로 생각하는 사람이 많아요.
+// 1. 다중상속을 제대로 못쓰니까.
+// 2. 제대로 쓸줄 알아도 다른 사람들을 못믿으니까.
+
+// 좀더 근본에 가까운 기능과 데이터들이 뭐냐를 판단하는 능력.
+// 상속구조의 절대 금기.
+
+class StatusUnit
+{
+protected:
+    char Name[NAMELEN] = "NONE";
+    int Hp = 100;
+    int MinAtt = 10;
+    int MaxAtt = 20;
+    int Speed = 10;
+    int Charm = 0;
+
+    // 부모는 자식클래스가 뭔지 절대로 알아서는 안된다.
+    //void Test(FightUnit& _Test)
+    //{
+    //}
+};
+
+
+class FightUnit : public StatusUnit
 {
 public:
     // void DamageLogic(int _Att)
@@ -25,9 +49,18 @@ public:
     //    _DefUnit.Hp -= MinAtt;
     //}
 
+    // MinMax
+    int GetDamage() const
+    {
+        // minAtt ~ MaxAtt 사이의 숫자가 리턴되는 함수를 만드세요.
+        // return MinAtt + rand
+    }
+
+    // 클래스의 레퍼런스를 넣어주는것이 많은게 간단해 집니다.
     void DamageLogic(const FightUnit& _AttUnit)
     {
-        Hp -= _AttUnit.MinAtt;
+        // _AttUnit => 나를 공격하려는 상대
+        Hp -= _AttUnit.GetDamage();
     }
 
     void DamageRender(const char* const _AttName, int _Att)
@@ -44,16 +77,14 @@ protected:
 
 
 private:
-    char Name[NAMELEN] = "NONE";
-	int Hp = 100;
-	int MinAtt = 10;
-    int MaxAtt = 20;
-    int Speed = 10;
 };
+
+// 컴포넌트 방식이라는 것과 차이가 거의 없다.
+// 보통 상속구조와 컴포넌트 기반구조가 게임의 로직계를 지배하고 있다.
+// 
 
 class Player : public FightUnit
 {
-
 };
 
 class Monster : public FightUnit
@@ -73,7 +104,6 @@ int main()
     
     Player NewPlayer;
     Monster NewMonster;
-
     NewMonster.DamageLogic(NewPlayer);
 
     // NewPlayer.
