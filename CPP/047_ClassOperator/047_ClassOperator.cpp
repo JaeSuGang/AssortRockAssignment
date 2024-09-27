@@ -98,7 +98,7 @@ int main()
     // NewPlayer1 = NewPlayer2;
     // NewPlayer1.operator=(NewPlayer2);
 
-
+    int a = 0;
 
     // NewPlayer + NewPlayer;
 
