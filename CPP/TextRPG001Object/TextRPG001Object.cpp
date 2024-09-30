@@ -9,6 +9,9 @@ const int NAMELEN = 10;
 // 절차지향 
 // 어떠한 현실적인 개념을 컴퓨터 세계로 끌고 들어온다.
 // 상태와 
+class Player;
+class Player;
+class Player;
 class Player
 {
 public:
