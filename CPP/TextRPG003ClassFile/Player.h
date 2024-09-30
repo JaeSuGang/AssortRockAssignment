@@ -1,5 +1,8 @@
 #pragma once
 
+// 구글 스탠다는 전방선언 하지 말자.
+// 저는 그냥 적당적당히 알아서 잘할 겁니다.
+
 // 파이트 유니트가 나오지 않을 것이다.
 // #include <>
 // " <= 이 파일의 경로와 같은 폴더내에 존재하는 파일들을 우선적으로 보여줍니다.
@@ -42,15 +45,27 @@ class UPlayer : public UFightUnit
 	// 심지어 선언과 동시에 상관 없다.
 	// 한번 해주면 그다음부터는 할필요도 없는데.
 
+public:
+	UPlayer();
+
+	// 나쁜게 아닌데 절제 없이 하다보면 순환참조 및 문제가 생긴다.
+	// 헤더에다가 구현하다보면 
+	// 그 헤더가 include cpp를 컴파일데 시간 오래걸리게 된다.
+	// 각 종 cpp에서 include를 하기 시작한다.
+	void Equip(class Item* Weapon);
+	// 헤더에서 함수를 구현하지 않습니다.
+	// 함수의 구현을 보통 헤더하지 않습니다.
+	//{
+	//	// 그 클래스의 함수를 사용하면 헤더가 있어야 한다.
+	//	// Weapon->Test();
+	//}
+protected:
+
+private:
 // #include "Item.h" <= 절대 좋은거 아니다.
 	class Item* Weapon = nullptr;
 
-	// 헤더에서 함수를 구현하지 않습니다.
-	// 함수의 구현을 보통 헤더하지 않습니다.
-	void Equip(class Item* Weapon)
-	{
-		// 그 클래스의 함수를 사용하면 헤더가 있어야 한다.
-		// Weapon->Test();
-	}
+
+
 };
 

@@ -1,5 +1,7 @@
 #pragma once
-class UMonster
+#include "FightUnit.h"
+
+class UMonster : public UFightUnit
 {
 };
 
