@@ -4,7 +4,7 @@
 #include <conio.h>
 
 
-void UFightZone::InPlayer(class UPlayer& _Player)
+int UFightZone::InPlayer(class UPlayer& _Player)
 {
 	InMsgPrint();
 	_getch();
