@@ -2,11 +2,25 @@
 #include "FightZone.h"
 #include "Town.h"
 #include "Player.h"
+#include <BaseSystem/EngineDebug.h>
+#include <BaseSystem/EngineFile.h>
+
+// #include "EngineFile.h"
+
+// #include "..\BaseSystem\EngineFile.h"
+// 정석적인 방법은 아닙니다.
+
+// #include < <= 시작하는 외부경로는 크게 2가지 기능의 영향을 받는다.
+
+
 #include <conio.h>
+
 
 
 void UWorld::PlayerNameSelect(class UPlayer& _Player)
 {
+	// C:\\
+
 	char InputName[100] = { 0, };
 
 	bool IsNameInput = true;
@@ -52,6 +66,8 @@ void UWorld::PlayerNameSelect(class UPlayer& _Player)
 		}
 	}
 
+	// 파일 저장
+
 	_Player.SetName(InputName);
 }
 
@@ -72,9 +88,22 @@ void UWorld::PlayerZonePlay(class UPlayer& _Player)
 
 void UWorld::InPlayer(class UPlayer& _Player)
 {
-	// PlayerNameSelect(_Player);
+	// 외부기로 헤더만 있고 CPP는 없다. 
+	UEngineFile File;
 
-	_Player.SetName("TestPlayer");
+	// 파일이 없을때
+	if (true)
+	{
+		PlayerNameSelect(_Player);
+	}
+	else 
+	{
 
-	PlayerZonePlay(_Player);
+	}
+
+	
+
+	/*_Player.SetName("TestPlayer");
+
+	PlayerZonePlay(_Player);*/
 }

@@ -3,29 +3,48 @@
 
 #include <iostream>
 #include <io.h>
+#include "EngineFile.h"
+
+// 기분 구문 넘어가고서 부터는 이제 순서는 의미 없다.
+// for넘어가고 나면 
 
 struct PlayerSaveData
 {
     // 포인터는 저장하는게 의미 있을까요?
 public:
+    // 리터럴 초기화 => 프로그래머 들끼라만 
     // int* Ptr; => 아무의미 없다.
     // const char* Name = "TestPlayer";
 
+    // 초기화 할때 넣어주는 값 "TestPlayer" => 리터럴 값
+    // 리터럴 초기화라고 하지는 않는다.
+    // 디폴트 맴버 이니셜라이저
     char Name[100] = "TestPlayer";
     int Hp = 30;
     int Att = 100;
 };
 
-class Player
+class MyInt
 {
+public:
+    int Value = 0;
+    MyInt(int _Value)
+    {
 
+    }
 };
 
 int main()
 {
+    int a = 0;
+    MyInt Mya = 0;
+
     PlayerSaveData PlayerData;
 
-    UEngineFile NewFile;
+    // 클래스화 시킨다
+    // 클래스로 랩핑
+
+    /*UEngineFile NewFile;
     NewFile.SetPath("SaveFIle.txt");
 
     if (NewFile.IsExist())
@@ -35,10 +54,48 @@ int main()
     }
     else {
         NewFile.Open("rb");
+    }*/
+
+    // 객체를 쓰는 것처럼 보인다.
+    // 
+    UEngineFile NewFile;
+    NewFile.SetPath("SaveFIle.txt");
+
+    if (false == NewFile.IsExits())
+    {
+        // 없으면 만들어
+        NewFile.FileOpen("wt");
+
+        //PlayerData.Att = 9999;
+        //PlayerData.Hp = 312321;
+        //strcpy_s(PlayerData.Name, "MyName");
+        //int Size = sizeof(PlayerSaveData);
+        // NewFile.Write(&PlayerData, Size);
+
+
+        // NewFile.Write("SaveFile\n", strlen("SaveFile\n"));
+        int Value = 100;
+        NewFile.Write(&Value, sizeof(int));
+        int Value0 = 10;
+        NewFile.Write(&Value, sizeof(int));
+
+    }
+    else 
+    {
+        NewFile.FileOpen("rb");
+
+        NewFile.Read(&PlayerData, sizeof(PlayerSaveData));
     }
 
-    int Result = _access("SaveFIle.txt", 00);
+    // 플랫폼 기능이 우선입니다.
+    // 기본적으로 OS가 지원해 줘야 합니다.
+    // 하나의 완전히 분리된 클래스를 통해서만 아래의 기능들을 사용하려는 겁니다.
 
+    // 파일명을 넣는곳은 일반적으로 경로 자체를 넣어주는게 기본입니다.
+
+    return 1;
+
+    int Result = _access("SaveFIle.txt", 00);
     if (0 != Result)
     {
         // 어떤 종류의 위치라고 할수 있고

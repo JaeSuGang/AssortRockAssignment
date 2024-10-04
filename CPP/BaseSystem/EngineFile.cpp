@@ -29,6 +29,7 @@ void UEngineFile::FileOpen(const char* _Mode)
 	}
 }
 
+
 void UEngineFile::Write(const void* _Ptr, size_t _Size)
 {
 	if (0 == _Size)
@@ -47,7 +48,7 @@ void UEngineFile::Write(const void* _Ptr, size_t _Size)
 		MSGASSERT("열지 않은 파일에 내용을 쓰려고 했습니다");
 		return;
 	}
-	
+
 	fwrite(_Ptr, _Size, 1, File);
 }
 
