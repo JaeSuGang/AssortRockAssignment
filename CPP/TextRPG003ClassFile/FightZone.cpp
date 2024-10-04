@@ -2,12 +2,13 @@
 #include <conio.h>
 
 
-void UFightZone::InPlayer(class UPlayer& _Player)
+int UFightZone::InPlayer(class UPlayer& _Player)
 {
 	InMsgPrint();
 	_getch();
 	while (true)
 	{
-
+		std::cout << "µµ¸ÁÄ¥ ¼ö ¾ø´Ù" << std::endl;
+		_getch();
 	}
 }
