@@ -83,6 +83,7 @@ void UWorld::PlayerZonePlay(class UPlayer& _Player)
 	FightZone.SetName("초보사냥터");
 
 	_Player.SetCurZone(0);
+	_Player.SetGold(10000000);
 
 	while (true)
 	{
