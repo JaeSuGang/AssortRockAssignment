@@ -154,6 +154,11 @@
     <ClInclude Include="World.h" />
     <ClInclude Include="Zone.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaseSystem\BaseSystem.vcxproj">
+      <Project>{0acebf45-8515-409b-99de-190cd392a6fc}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

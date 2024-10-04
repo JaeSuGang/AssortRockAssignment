@@ -73,15 +73,22 @@ void UWorld::PlayerNameSelect(class UPlayer& _Player)
 
 void UWorld::PlayerZonePlay(class UPlayer& _Player)
 {
-	UTown TownZone;
-	TownZone.SetName("초보마을");
+	UTown TownZone0;
+	TownZone0.SetName("초보마을");
+
+	UTown TownZone1;
+	TownZone1.SetName("중급마을");
 
 	UFightZone FightZone;
 	FightZone.SetName("초보사냥터");
 
 	while (true)
 	{
-		TownZone.InPlayer(_Player);
+		// 여기
+
+		/*int Result =*/ TownZone0.InPlayer(_Player);
+		TownZone1.InPlayer(_Player);
+		FightZone.InPlayer(_Player);
 	}
 
 }
@@ -90,20 +97,30 @@ void UWorld::InPlayer(class UPlayer& _Player)
 {
 	// 외부기로 헤더만 있고 CPP는 없다. 
 	UEngineFile File;
+	File.SetPath("SaveFile.Dat");
 
 	// 파일이 없을때
-	if (true)
+	if (false == File.IsExits())
 	{
+		File.FileOpen("wb");
+
+		// 이름 정하고 나왔다.
 		PlayerNameSelect(_Player);
+		const char* Name = _Player.GetName();
+
+		// 문자열을 저장할때는 문제가 있다.
+		// 초반에는 안좋을수 있다.
+		// 저장할때 가장 쉬운 방법은 크기가 고정되어 있는 것이다.
+		File.Write(Name, NAMELEN);
 	}
 	else 
 	{
+		File.FileOpen("rb");
 
+		char Arr[100] = {};
+		File.Read(Arr, NAMELEN);
+		_Player.SetName(Arr);
 	}
 
-	
-
-	/*_Player.SetName("TestPlayer");
-
-	PlayerZonePlay(_Player);*/
+	PlayerZonePlay(_Player);
 }
