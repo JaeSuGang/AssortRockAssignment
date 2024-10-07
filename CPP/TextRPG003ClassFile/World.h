@@ -1,4 +1,6 @@
 #pragma once
+#include "Town.h"
+#include "FightZone.h"
 
 class UWorld
 {
