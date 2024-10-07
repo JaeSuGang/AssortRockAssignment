@@ -81,8 +81,10 @@ void UWorld::ZoneInit()
 	TownZone1.SetName("중급마을");
 	FightZone.SetName("초보사냥터");
 
-	TownZone0.Connecting(&TownZone0);
+	// TownZone0.Connecting(&TownZone0);
 
+	// InterConnecting 내부에서 this는? => townzone0
+	// InterConnecting 내부에서 _LinkZone는? => FightZone
 	TownZone0.InterConnecting(&FightZone);
 
 	// TownZone0.Connecting(&FightZone);

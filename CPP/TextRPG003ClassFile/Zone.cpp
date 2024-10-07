@@ -21,6 +21,10 @@ bool UZone::IsConnecting(UZone* _LinkZone)
 	return false;
 }
 
+// 100분 25분때 안됐어 무조건 질문.
+// 50분때 또 안됐어 또 질문
+// 아예 핀트가 나감. => 정답 제발 평생해도 
+
 bool UZone::InterConnecting(UZone* _LinkZone)
 {
 	// 2줄이면 됩니다.
@@ -28,8 +32,8 @@ bool UZone::InterConnecting(UZone* _LinkZone)
 	// 기본이 저한테 기본입니다.
 	// 무식하게 짜세요.
 	// 디버깅
-	Connecting(_LinkZone);
 	_LinkZone->Connecting(this);
+	this->Connecting(_LinkZone);
 
 	return true;
 }
