@@ -13,8 +13,6 @@ void BlackSmith::InPlayer(class UPlayer& _Player/*, int& Result*/)
 		return;
 	}
 
-	_Player.SetGold(1000000);
-
 	srand(time(nullptr));
 
 	while (true)
