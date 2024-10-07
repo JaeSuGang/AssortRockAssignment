@@ -27,13 +27,6 @@ class Item;
 
 class UPlayer : public UFightUnit
 {
-public:
-	enum class ELocation
-	{
-		BeginnerTown = 1,
-		IntermediateTown = 2,
-		BeginnerMonsterField = 3
-	};
 	// 내부에서 다른 클래스를 값형으로 사용했을때 헤더를 넣지 않을수 없다.
 	// Has a 인데 값형으로 Has a 했을때
 	// UItem NewMonster;
@@ -55,6 +48,8 @@ public:
 public:
 	UPlayer();
 
+	void PrintStatusMiddle() override;
+
 	// 나쁜게 아닌데 절제 없이 하다보면 순환참조 및 문제가 생긴다.
 	// 헤더에다가 구현하다보면 
 	// 그 헤더가 include cpp를 컴파일데 시간 오래걸리게 된다.
@@ -66,17 +61,25 @@ public:
 	//	// 그 클래스의 함수를 사용하면 헤더가 있어야 한다.
 	//	// Weapon->Test();
 	//}
-	ELocation GetLocation();
-	void SetLocation(ELocation Location);
+
+	void SetCurZone(int _Index)
+	{
+		CurZoneIndex = _Index;
+	}
+
+	int GetCurZone()
+	{
+		return CurZoneIndex;
+	}
+
+	void SaveFileLoad();
 
 protected:
-	ELocation m_CurrentLocation;
 
 private:
 // #include "Item.h" <= 절대 좋은거 아니다.
 	class Item* Weapon = nullptr;
-
-
-
+	int CurZoneIndex = 0;
+	int EquipAtt = 0;
 };
 

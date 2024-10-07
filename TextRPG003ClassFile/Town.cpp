@@ -3,7 +3,7 @@
 #include "Player.h"
 
 // 포인터나 레퍼런스는 무조건 8바이트 이기 때문에
-void UTown::InPlayer(class UPlayer& _Player)
+UZone* UTown::InPlayer(class UPlayer& _Player)
 {
 	InMsgPrint();
 
@@ -14,34 +14,24 @@ void UTown::InPlayer(class UPlayer& _Player)
 
 		std::cout << "0. 체력회복\n";
 		std::cout << "1. 강화\n";
-		std::cout << "2. 사냥터이동\n";
-		std::cout << "3. 중급마을로 이동\n";
+		std::cout << "2. 다른 지역으로 이동\n";
+
 		int Select = _getch();
 
 		switch (Select)
 		{
-		case '0':
-			printf_s("0눌렀습니다.");
-			_getch();
-			break;
-		case '1':
-			printf_s("1눌렀습니다.");
-			_getch();
-			break;
 		case '2':
 		{
-			printf_s("사냥터로 이동합니다.");
-			_getch();
-			_Player.SetLocation(UPlayer::ELocation::BeginnerMonsterField);
-
-			return;
+			UZone* NextZone = ConnectingProgress();
+			return NextZone;
 			break;
 		}
+		case '0':
+		case '1':
 		case '3':
-			printf_s("중급자 마을로 이동합니다.");
+			printf_s("아직 완성되지 않은 기능입니다.");
 			_getch();
-			_Player.SetLocation(UPlayer::ELocation::IntermediateTown);
-			return;
+			return nullptr;
 		default:
 			break;
 		}
