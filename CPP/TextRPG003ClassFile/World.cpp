@@ -71,16 +71,25 @@ void UWorld::PlayerNameSelect(class UPlayer& _Player)
 	_Player.SetName(InputName);
 }
 
+void UWorld::ZoneInit()
+{
+	// 지역들을 준비시키것.
+	// 이니셜라이즈 단계
+	// 객체들을 만들고 처음으로 준비시키는 단계
+	// 대부분 딱 1번한다.
+	TownZone0.SetName("초보마을");
+	TownZone1.SetName("중급마을");
+	FightZone.SetName("초보사냥터");
+
+	// 업캐스팅
+	TownZone0.Link(&FightZone);
+}
+
+
 void UWorld::PlayerZonePlay(class UPlayer& _Player)
 {
-	UTown TownZone0;
-	TownZone0.SetName("초보마을");
+	ZoneInit();
 
-	UTown TownZone1;
-	TownZone1.SetName("중급마을");
-
-	UFightZone FightZone;
-	FightZone.SetName("초보사냥터");
 
 	_Player.SetCurZone(0);
 	_Player.SetGold(10000000);
